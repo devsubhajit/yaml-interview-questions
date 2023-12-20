@@ -10,9 +10,121 @@
 |3  | [Can yaml be used in place of json?](#yaml-in-place-json) |
 |4  | [What is the use of anchor and alias in yaml?](#anchor-alias) |
 |5  | [YAML datatypes?](#yaml-datatypes) |
-|6  | [Convert this below json to yaml?](#what-is-callback-hell) |
-|7  | [How to handle call back function?](#how-to-handle-call-back-function) |
+|6  | [What will be the value for below line in YAML in JSON?](#yes-true) |
+        ---
+        Account:
+          name: Narayan Sahoo
+          inProject: Yes
+          projectName: CICD pipeline
+|   |     |
+| ----   | ----------------     |
+|7  | [Can you make this 'yes' or 'No' as string?](#yes-string) |
+|8  | [Convert this below json to yaml?](#json-to-yaml) |
 
+        {
+            "Routine": {
+                "days": [
+                {
+                    "weekday": {
+                    "wakeup": "6:00 AM",
+                    "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                    ],
+                    "sleeptime": "10:00 PM"
+                    }
+                }
+                ]
+            },
+            "schedules": {
+                "days": {
+                "weekend": [
+                    {
+                    "monday": {
+                        "wakeup": "6:00 AM",
+                        "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                        ],
+                        "sleeptime": "10:00 PM"
+                    }
+                    },
+                    {
+                    "tuesday": {
+                        "wakeup": "6:00 AM",
+                        "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                        ],
+                        "sleeptime": "10:00 PM"
+                    }
+                    },
+                    {
+                    "wednesday": {
+                        "wakeup": "6:00 AM",
+                        "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                        ],
+                        "sleeptime": "10:00 PM"
+                    }
+                    },
+                    {
+                    "thursday": {
+                        "wakeup": "6:00 AM",
+                        "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                        ],
+                        "sleeptime": "10:00 PM"
+                    }
+                    },
+                    {
+                    "friday": null,
+                    "wakeup": "6:00 AM",
+                    "activities": [
+                        "workout",
+                        "meetings",
+                        "work",
+                        "sleep"
+                    ],
+                    "sleeptime": "12:00 AM"
+                    }
+                ]
+                }
+            }
+        }
+
+|  |   |
+| ---- | ----------------  |
+|9  | [Can you tell the output from this below code and explain?](#string-output) |
+        ---
+        Project: CICD
+        desc: |
+            CICD is need
+            to be done
+            by YAML
+        history: >
+            Initially it was
+        done manually
+        now done by YAML
+
+|  |   |
+| ---- | ----------------  |
+|10  | [Can you remove the last line break from the above code?](#remove-line-break) |
+|11  | [What is KEY-VALUE pairs?](#key-value) |
+|12  | [What is Scalers?](#Scalers) |
+|13  | [Comment in YAML?](#comment) |
 
 
 
@@ -110,6 +222,203 @@
     The Alias essentially acts as a "see above’’ command, which makes the program pause standard traversal, return to the anchor point, then resume standard traversal after the Anchored portion is finished.
 
     YAML anchorsandaliasescannotcontainthe'[',']','{','}',and','characters.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+5. ### [YAML datatypes?](#yaml-datatypes)
+
+    Datatype supported by YAML are mostly all kind, like 
+
+    * string, 
+    * boolean, 
+    * integers, 
+    * float, 
+    * timestamp, 
+    * null
+
+    But we don't need to explicitely define it's data type while writing an YAML file, YAML offers versatility in typing by auto-detecting data types while also supporting explicit typing options.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+6. ### [What will be the value for below line in YAML in JSON?](#yes-true)
+
+        ---
+        Account:
+          name: Narayan Sahoo
+          inProject: Yes
+          projectName: CICD pipeline
+
+    The above lines on YAML will have this below output in JSON
+
+        {
+            "Account": {
+                "name": "Narayan Sahoo",
+                "inProject": true,
+                "projectName": "CICD pipeline"
+            }
+        }
+
+**[⬆ Back to Top](#table-of-contents)**
+
+7. ### [Can you make this 'yes' or 'No' as string?](#yes-string)
+
+    Yes we can make this **Yes** or **No** as a string by appling explicit typing option in YAML
+        ---
+        Account:
+          name: Narayan Sahoo
+          inProject: !!str Yes #explicit data type options
+          projectName: CICD pipeline
+
+    The above lines on YAML will have this below output in JSON
+
+        {
+            "Account": {
+                "name": "Narayan Sahoo",
+                "inProject": "Yes",
+                "projectName": "CICD pipeline"
+            }
+        }
+
+**[⬆ Back to Top](#table-of-contents)**
+
+8. ### [Convert this below json to yaml?](#json-to-yaml)
+
+    As it has some repeatetive objects so YAML anchor and alias can be usesd also override anchors
+
+
+        ---
+        Routine:
+            days: 
+            - weekday: &working
+                    wakeup: 6:00 AM
+                activities:
+                    - workout
+                - meetings
+                - work
+                - sleep
+                sleeptime: 10:00 PM
+        schedules:
+            days:
+            weekend:
+                - monday: *working
+            - tuesday: *working
+            - wednesday: *working
+            - thursday: *working
+            - friday: 
+                <<: *working
+                sleeptime: 12:00 AM
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+9. ### [Can you tell the output from this below code and explain?](#json-to-yaml)
+
+        ---
+        Project: CICD
+        desc: |
+            CICD is need
+            to be done
+            by YAML
+        history: >
+            Initially it was
+        done manually
+        now done by YAML
+
+    On the above code we are using to type of style for declaring multiline string
+    
+    * Folded style  **'|'** : it will have all the line breaks
+    * Literal style **'>'** : it will have only one line break at the end
+
+    This will be the outout in JSON
+
+            {
+                "Project": "CICD",
+                "desc": "CICD is need\nto be done\nby YAML\n",
+                "history": "Initially it was done manually now done by YAML\n"
+            }
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+10. ### [Can you remove the last line break from the above code?](#remove-line-break)
+
+    Yes we can achieve this by adding **'-'** with both the string style.
+
+        ---
+        Project: CICD
+        desc: |-
+            CICD is need
+            to be done
+            by YAML
+        history: >-
+            Initially it was
+        done manually
+        now done by YAML
+
+
+    Outout in JSON
+
+            {
+                "Project": "CICD",
+                "desc": "CICD is need\nto be done\nby YAML",
+                "history": "Initially it was done manually now done by YAML"
+            }
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+11. ### [What is KEY-VALUE pairs?](#key-value)
+    Most things in a YAML file are a form of key-value pair. Key-value pairs are the basis for all other YAML
+construction
+
+For example: 
+
+        # <key>: <value>
+        account: projectname # projectname is value where account is the key 
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+12. ### [What is Scalers?](#Scalers)
+    Scalars represent a single stored value. Scalars are assigned to key names as values. You define a key with
+a name, colon, and space, then a value for it to hold
+
+For example: 
+
+        # <key>: <value>
+        account: projectname # projectname is scaler 
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+13. ### [Comment in YAML?](#comment)
+    
+    **#** key is refered as comment in YAML file
+
+For example: 
+
+        ---
+        Project: CICD
+        desc: |-
+            CICD is need
+            to be done
+            by YAML
+        #history: >-
+        #  Initially it was
+        #  done manually
+        #  now done by YAML
+This above code will be represented like below in json, because JSON don't have commented line support
+
+        {
+            "Project": "CICD",
+            "desc": "CICD is need\nto be done\nby YAML"
+        }
+
+
 
 **[⬆ Back to Top](#table-of-contents)**
 
