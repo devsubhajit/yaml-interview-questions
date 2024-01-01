@@ -206,7 +206,7 @@
 
 3. ### [Can yaml be used in place of json?](#yaml-in-place-json)
 
-    With technical approach YAML can be used for data exchange purpose between application to application which JSON is doing write now. But still JSON is used the reason is in applications to application data exchange communication No one bothered about human readability because two applications has to understand that request but not a human being, whereas in DevOps or in any cloud configuration where definitely some human has to understand it that's why YAML become more popular inside configuration management products rather than data exchange.
+    With technical approach YAML can be used for data exchange purpose between application to application which JSON is doing right now. The reason is in applications to application data exchange communication No one bothered about human readability because only two applications has to understand that request but not a human being, whereas in DevOps or in any cloud configuration where definitely some human has to understand it that's why YAML become more popular inside configuration management products rather than data exchange.
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -221,7 +221,7 @@
 
     The Alias essentially acts as a "see above’’ command, which makes the program pause standard traversal, return to the anchor point, then resume standard traversal after the Anchored portion is finished.
 
-    YAML anchorsandaliasescannotcontainthe'[',']','{','}',and','characters.
+    YAML anchors and aliases cannot contain the'[',']','{','}',and','characters.
 
 **[⬆ Back to Top](#table-of-contents)**
 
