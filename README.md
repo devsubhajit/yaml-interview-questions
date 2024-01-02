@@ -125,6 +125,12 @@
 |11  | [What is KEY-VALUE pairs?](#key-value) |
 |12  | [What is Scalers?](#Scalers) |
 |13  | [Comment in YAML?](#comment) |
+|14  | [What is the command of docker building image?](#build-image) |
+|15  | [Create a basic docker file for node application and explain?](#docker-file-create) |
+|16  | [How to change destination directory in the image?](#workdir) |
+|17  | [How to run a shell inside a docker image?](#run-shell) |
+|18  | [How to run a docker with port mapping?](#port-mapping) |
+
 
 
 
@@ -419,6 +425,98 @@ This above code will be represented like below in json, because JSON don't have 
         }
 
 
+
+**[⬆ Back to Top](#table-of-contents)**
+
+14. ### [What is the command of docker building image?](#build-image)
+    
+        docker build .
+    this command will return an image with a id, using id is not recommended as every time with new build it will be changed or newly created. Instead of that we can use this 
+
+        docker build -t dockerhub/myapplication .
+
+    In the above command: 
+    *  **-t** is for tagging,
+    * **dockerhu** is docker account username
+    * **myapplication** is the tag which we want to create
+    * dot is the directory on which we want to build the image
+    
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+15. ### [Create a basic docker file for node application and explain?](#docker-file-create)
+    
+    To create docker file, we have to create docker file in the root directory of our node application and the filename should be **Dockerfile** without any extension.
+
+        # Base image specification
+        FROM node:alpine
+
+        # installations
+        COPY ./ ./
+        RUN npm install
+
+        # Default command
+        CMD ["npm", "start"]
+
+    In the above example:
+    * we are pulling an image from docker hub, which is **node** and with the tag **alpine**, it can be any other tag like version which is available in dockerhub under this node image
+    * Under installation we are copying everything from root and pasting it inside the image root folder, first **dot slash** is from our application and second **dot slash** is destination.
+    * In the **RUN** command its clear for dependency installations
+    * The default command **CMD** is to start the application, in this case it is **npm start**
+    
+
+**[⬆ Back to Top](#table-of-contents)**
+
+16. ### [How to change destination directory in the image?](#workdir)
+    
+    We can achive it by using **WORKDIR** in our dockerfile, and it is a good practice to specific a work directory inside the image, otherwise there will be a high chance of conflicting directory 
+
+        # Base image specification
+        FROM node:alpine
+
+        WORKDIR /usr/app
+
+        # installations
+        COPY ./ ./
+        RUN npm install
+
+        # Default command
+        CMD ["npm", "start"]
+
+    In the above example we have selected **usr** directory, which we can get by running a shell inside the image.
+    And inside the **usr** directory we are creating **app** directory and there we are pasting our source code. 
+    
+
+**[⬆ Back to Top](#table-of-contents)**
+
+17. ### [How to run a shell inside a docker image?](#run-shell)
+    
+    To run a shell inside docker image follow these below steps.
+
+    1. Get the docker id or image tag name 
+    
+            docker ps 
+    2. After getting the id run the below command
+            
+            docker run -it <image id> sh
+    This will open the shell of the image, and we can run window commands like
+    **ls**, **cd** etc
+
+    If the docker is already running, we can use **exec** command instead of **run**
+            
+        docker exec -it <image id> sh
+
+**[⬆ Back to Top](#table-of-contents)**
+
+18. ### [How to run a docker with port mapping?](#port-mapping)
+    
+    After getting image name by running the below command:
+
+        docker run -p 3000:5000 dockerUser/imagename
+    In the above code, **-p** is the tag for port and 3000 is the port where the request will come in 
+    local machine and 5000 is the port inside container
 
 **[⬆ Back to Top](#table-of-contents)**
 
