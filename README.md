@@ -520,6 +520,19 @@ This above code will be represented like below in json, because JSON don't have 
 
 **[⬆ Back to Top](#table-of-contents)**
 
+19. ### [What is image according to you?](#image-definition)
+    
+    If I explain image of an IT person, it naturaly feels like, a person who is into coding or in IT business. But at the same time the same perosn also has a different image at home which plays different roles.
+
+    In docker, image is something which is specific to certain job. 
+    Let say in our docker file we are taking an image from docker hub which is **node:alpine** 
+    
+    It means node:apline is a tag for an image which is a software enviornment, where a node application can be build and run.
+
+    So we can use image as enviornment to create another image, which is bassically our own application enviorment.
+
+**[⬆ Back to Top](#table-of-contents)**
+
 
 
 
